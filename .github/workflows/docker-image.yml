@@ -3,25 +3,20 @@ name: docker-image
 on:
   push:
     branches: [ "master" ]
-  
-
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
-steps:
-  -  name: check out the repo
-     uses: actions/checkout@v4
-  -  name: Log in to Docker Hub
-     uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
-     with: username: japasteen@gmail.com
-           password: Jasmine@84
-       
-    -name: docker push to hub
-    
-
     steps:
+    -  name: check out the repo
+       uses: actions/checkout@v4
+    -  name: Log in to Docker Hub
+       uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
+       with:
+         username: japasteen@gmail.com
+         password: Jasmine@84
+       
+    - name  : docker push to hub
+      steps :
     - uses: actions/checkout@v4
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag new
